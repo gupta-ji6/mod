@@ -1,11 +1,11 @@
 {
-  "name": "portal-app",
+  "name": "mod",
   "version": "0.0.0",
   "license": "MIT",
   "scripts": {
     "ng": "ng",
     "start": "ng serve --host 172.18.5.9",
-    "build": "ng build",
+    "build": "ng b --prod --build-optimizer --base-href \"https://ayushgupta.tech/mod/\"",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"

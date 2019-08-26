@@ -1,6 +1,6 @@
 import { AppPage } from './app.po';
 
-describe('portal-app App', () => {
+describe('mod App', () => {
   let page: AppPage;
 
   beforeEach(() => {
