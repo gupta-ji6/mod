@@ -1,16 +1,14 @@
-export class User {
-  id: string;
+export class Mentor {
+
+  id: number;
   userName: string;
   password: string;
   firstName: string;
-  lastName: string;
+  lastname: string;
   contactNumber: number;
   regCode: string;
   role: string;
   linkedinUrl: string;
   yearsOfExperience: number;
   active: boolean;
-  confirmedSignUp: boolean;
-  resetPassword: boolean;
-  resetPasswordDate: string;
 }
