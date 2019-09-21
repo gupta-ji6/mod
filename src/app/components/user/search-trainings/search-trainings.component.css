@@ -14,6 +14,34 @@
   justify-content: center;
 }
 
+.grid-parent {
+  width: 80vw;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(186px, 1fr));
+  grid-template-rows: 1fr 1fr;
+  grid-column-gap: 10px;
+  grid-row-gap: 10px;
+}
+
+.mat-card-image {
+  height: 25vh;
+  /* max-width:25vw;
+  max-height:25vh;
+  width: auto;
+  height: auto;
+  margin: 0 auto; */
+}
+.mat-button {
+  color: #d81b60;
+}
+.mat-raised-button {
+  background-color: #d81b60;
+  color: white;
+  text-transform: uppercase;
+  width: 25vw;
+}
+
+
 .form-card {
   margin-bottom: 5vh;
   margin-top: 5vh;

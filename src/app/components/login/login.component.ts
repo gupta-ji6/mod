@@ -1,38 +1,95 @@
-import { Component, OnInit } from '@angular/core';
-import {FormControl, FormGroupDirective, NgForm, Validators, ReactiveFormsModule} from '@angular/forms';
-import {ErrorStateMatcher} from '@angular/material/core';
-
-export class MyErrorStateMatcher implements ErrorStateMatcher {
-  isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
-    const isSubmitted = form && form.submitted;
-    return !!(control && control.invalid && (control.dirty || control.touched || isSubmitted));
-  }
-}
+import { Component, OnInit } from "@angular/core";
+import { Router } from "@angular/router";
+import { MatSnackBar } from "@angular/material";
+import { FormControl, Validators } from "@angular/forms";
+import { LoginService } from "../../services/login.service";
 
 @Component({
-  selector: 'app-login',
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+  selector: "app-login",
+  templateUrl: "./login.component.html",
+  styleUrls: ["./login.component.css"],
+  providers: [LoginService]
 })
 export class LoginComponent implements OnInit {
+  constructor(
+    private router: Router,
+    private loginService: LoginService,
+    public snackBar: MatSnackBar
+  ) {}
+
+  ngOnInit() {}
+
+  input = {
+    role: "",
+    userName: "",
+    password: ""
+  };
 
   roles = [
-    {value: 'user-0', viewValue: 'User'},
-    {value: 'mentor-1', viewValue: 'Mentor'},
-    {value: 'admin-2', viewValue: 'Admin'}
+    { value: "User", viewValue: "User" },
+    { value: "Mentor", viewValue: "Mentor" },
+    { value: "Admin", viewValue: "Admin" }
   ];
 
-  emailFormControl = new FormControl('', [
-    Validators.required,
-    Validators.email,
-  ]);
+  email = new FormControl("", [Validators.required, Validators.email]);
 
-  matcher = new MyErrorStateMatcher();
-
-  hide = true;
-  constructor() { }
-
-  ngOnInit() {
+  getEmailErrorMessage() {
+    return this.email.hasError("required")
+      ? "You must enter a value"
+      : this.email.hasError("email")
+      ? "Not a valid email"
+      : "";
   }
 
+  emailFormControl = new FormControl("", [
+    Validators.required,
+    Validators.email
+  ]);
+
+  hide: boolean = true;
+
+  login(): void {
+    if ((this.input.role == "User")) {
+      this.loginService.getUsers(this.input).subscribe(data => {
+        if (data == null) {
+          let message =
+          "Opps!, Your credentials are invalid.";
+          let snackBarRef = this.snackBar.open(message, "Close", {
+            duration: 5000
+          });
+          snackBarRef.onAction().subscribe(() => {
+            snackBarRef.dismiss();
+          });
+        }
+        else {
+          this.router.navigateByUrl("/user")
+        }
+      }
+      ,
+      // error => {
+      //   console.log(error);
+      //   let snackBarRef = this.snackBar.open(error.error.message, "Close", {
+      //     duration: 20000
+      //   });
+      // }
+      );
+    } else if (this.input.role == "Mentor") {
+      this.loginService.getMentors(this.input).subscribe(data => {
+        if (data == null) {
+          let message =
+            "Opps!, Your credentials are invalid.";
+          let snackBarRef = this.snackBar.open(message, "Close", {
+            duration: 5000
+          });
+          snackBarRef.onAction().subscribe(() => {
+            snackBarRef.dismiss();
+          });
+        }
+        else {
+          this.router.navigateByUrl("/mentor")
+        }
+      });
+    } else if (this.input.role = "Admin") {
+    }
+  }
 }

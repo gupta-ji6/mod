@@ -10,5 +10,8 @@ export class Mentor {
   role: string;
   linkedinUrl: string;
   yearsOfExperience: number;
+  timezone: string;
+  rating: number;
+  profile: string;
   active: boolean;
 }

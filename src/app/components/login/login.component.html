@@ -1,37 +1,61 @@
 <div class="content">
   <form class="form-signin">
     <div class="form-content mx-auto my-auto">
-      <img src="./../../assets/mod-logo.png" alt="" width="150" height="150" class="mt-5" />
+      <img
+        src="./../../assets/mod-logo.png"
+        alt=""
+        width="150"
+        height="150"
+        class="mt-5"
+      />
       <h1 class="h3 mb-3 font-weight-normal">Sign In</h1>
+
       <mat-form-field>
-        <mat-select placeholder="Select Your Role">
+        <mat-select placeholder="Select Your Role" [(ngModel)]="input.role" name="role">
           <mat-option *ngFor="let role of roles" [value]="role.value">
             {{ role.viewValue }}
           </mat-option>
         </mat-select>
         <mat-icon matSuffix>person_outline</mat-icon>
       </mat-form-field>
+
       <mat-form-field class="example-full-width">
-        <input matInput placeholder="Email" [formControl]="emailFormControl"
-               [errorStateMatcher]="matcher">
-               <mat-icon matSuffix>mail_outline</mat-icon>
-        <mat-error *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('required')">
-          Please enter a valid email address
-        </mat-error>
-        <mat-error *ngIf="emailFormControl.hasError('required')">
-          Email is <strong>required</strong>
-        </mat-error>
+        <input
+          matInput
+          placeholder="Email"
+          name="email"
+          [formControl]="email"
+          [(ngModel)]="input.userName"
+          type="email"
+        />
+        <mat-icon matSuffix>mail_outline</mat-icon>
+        <mat-error *ngIf="email.invalid">{{
+          getEmailErrorMessage()
+        }}</mat-error>
       </mat-form-field>
+
       <mat-form-field>
-        <input matInput placeholder="Password" [type]="hide ? 'password' : 'text'">
-        <mat-icon matSuffix class="material-icons-outlined" (click)="hide = !hide">{{hide ? 'visibility' : 'visibility_off'}}</mat-icon>
+        <input
+          matInput
+          placeholder="Password"
+          [(ngModel)]="input.password"
+          name="password"
+          [type]="hide ? 'password' : 'text'"
+        />
+        <mat-icon
+          matSuffix
+          class="material-icons-outlined"
+          (click)="hide = !hide"
+          >{{ hide ? "visibility" : "visibility_off" }}</mat-icon
+        >
       </mat-form-field>
-      <a mat-raised-button routerLink="/home">Sign In</a>
+
+      <button mat-raised-button (click)="login()">Sign In</button>
       <div>OR</div>
-      <h6
-        >Sign up as <a routerLink="/user/signup">User</a> or
-        <a routerLink="/mentor/signup"> Mentor</a>.</h6
-      >
+      <h6>
+        Sign up as <a routerLink="/user/signup">User</a> or
+        <a routerLink="/mentor/signup"> Mentor</a>.
+      </h6>
       <!-- <h7>New mentor? <a href="#">Sign up as mentor </a>here.</h7> -->
       <p class="mt-5 mb-3 text-muted text-center">
         <small

@@ -13,9 +13,12 @@
 .example-container {
   display: flex;
   flex-direction: column;
-  min-width: 300px;
   background-color: white;
-  width: 85vw;
+  width: 95vw;
+}
+
+.role-card {
+  margin-bottom: 3vh;
 }
 
 .example-header {
@@ -40,11 +43,11 @@
   color: white;
   font-weight: lighter;
 }
-.container {
+/* .container {
   width: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
   flex-wrap: wrap;
   flex-direction: column;
-}
+} */

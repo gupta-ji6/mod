@@ -3,172 +3,328 @@
     <h1>Modify Users</h1>
   </div>
 
+  <div class="role-card">
+    <mat-card>
+      <mat-form-field>
+        <mat-select placeholder="Role" [(ngModel)]="role" name="role">
+          <mat-option *ngFor="let role of roles" [value]="role.value">
+            {{ role.viewValue }}
+          </mat-option>
+        </mat-select>
+        <mat-icon matSuffix>person_outline</mat-icon>
+      </mat-form-field>
+    </mat-card>
+  </div>
+
   <div class="example-container mat-elevation-z8">
     <div class="example-header">
       <mat-form-field>
-        <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+        <input
+          matInput
+          (keyup)="applyFilter($event.target.value)"
+          placeholder="Search"
+        />
+        <!-- <input
+          matInput
+          value="Admin"
+          placeholder="Search"
+          *ngIf="role === 'Admin'"
+        /> -->
       </mat-form-field>
     </div>
-  
-    <mat-table #table [dataSource]="dataSource" matSort>
-  
-      <ng-container matColumnDef="sno">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> S.No. </mat-header-cell>
-        <mat-cell *matCellDef="let user"> {{user.sno}} </mat-cell>
-      </ng-container>
-  
-      <!-- Name Column -->
+
+    <mat-table
+      #table
+      [dataSource]="userDataSource"
+      matSort
+      *ngIf="role !== 'Mentor'"
+    >
       <ng-container matColumnDef="id">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> User ID </mat-header-cell>
-        <mat-cell *matCellDef="let user"> {{user.id}} </mat-cell>
-      </ng-container>
-  
-      <!-- Weight Column -->
-      <ng-container matColumnDef="name">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> Name </mat-header-cell>
-        <mat-cell *matCellDef="let user"> {{user.name}} </mat-cell>
-      </ng-container>
-  
-      <!-- Symbol Column -->
-      <ng-container matColumnDef="type">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> Type </mat-header-cell>
-        <mat-cell *matCellDef="let user"> {{user.type}} </mat-cell>
+        <mat-header-cell *matHeaderCellDef mat-sort-header>
+          User ID
+        </mat-header-cell>
+        <mat-cell *matCellDef="let users"> {{ users.id }} </mat-cell>
       </ng-container>
 
-      <ng-container matColumnDef="gender">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> Gender </mat-header-cell>
-        <mat-cell *matCellDef="let user"> {{user.gender}} </mat-cell>
+      <ng-container matColumnDef="firstName">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>
+          First Name
+        </mat-header-cell>
+        <mat-cell *matCellDef="let users"> {{ users.firstName }} </mat-cell>
       </ng-container>
 
-      <ng-container matColumnDef="email">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> Email </mat-header-cell>
-        <mat-cell *matCellDef="let user"> {{user.email}} </mat-cell>
+      <ng-container matColumnDef="lastName">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>
+          Last Name
+        </mat-header-cell>
+        <mat-cell *matCellDef="let users"> {{ users.lastName }} </mat-cell>
       </ng-container>
 
-      <ng-container matColumnDef="contact">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> Contact </mat-header-cell>
-        <mat-cell *matCellDef="let user"> {{user.contact}} </mat-cell>
+      <ng-container matColumnDef="userName">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>
+          Email
+        </mat-header-cell>
+        <mat-cell *matCellDef="let users"> {{ users.userName }} </mat-cell>
       </ng-container>
 
-      <ng-container matColumnDef="passwordHash">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> Password Hash </mat-header-cell>
-        <mat-cell *matCellDef="let user"> {{user.passwordHash}} </mat-cell>
+      <ng-container matColumnDef="contactNumber">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>
+          Contact Number
+        </mat-header-cell>
+        <mat-cell *matCellDef="let users"> {{ users.contactNumber }} </mat-cell>
       </ng-container>
 
-      <ng-container matColumnDef="block">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> Block/Unblock </mat-header-cell>
-        <mat-cell *matCellDef="let user">
-          <button mat-button [hidden]="user.block" color="accent">Block</button>
-          <button mat-button [hidden]="!user.block" color="basic">Unblock</button>
+      <ng-container matColumnDef="password">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>
+          Password
+        </mat-header-cell>
+        <mat-cell *matCellDef="let users"> {{ users.password }} </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="regCode">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>
+          Reg Code
+        </mat-header-cell>
+        <mat-cell *matCellDef="let users"> {{ users.regCode }} </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="role">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>
+          Role
+        </mat-header-cell>
+        <mat-cell *matCellDef="let users"> {{ users.role }} </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="linkedinUrl">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>
+          Linkedin URL
+        </mat-header-cell>
+        <mat-cell *matCellDef="let users"> {{ users.linkedinUrl }} </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="yearsOfExperience">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>
+          Years Of Experience
+        </mat-header-cell>
+        <mat-cell *matCellDef="let users">
+          {{ users.yearsOfExperience }}
         </mat-cell>
       </ng-container>
-  
-      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-      <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+
+      <ng-container matColumnDef="active">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>
+          Active
+        </mat-header-cell>
+        <mat-cell *matCellDef="let users"> {{ users.active }} </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="confirmedSignUp">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>
+          Confirmed Sign Up
+        </mat-header-cell>
+        <mat-cell *matCellDef="let users">
+          {{ users.confirmedSignUp }}
+        </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="resetPassword">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>
+          Reset Password
+        </mat-header-cell>
+        <mat-cell *matCellDef="let users"> {{ users.resetPassword }} </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="resetPasswordDate">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>
+          Reset Password Date
+        </mat-header-cell>
+        <mat-cell *matCellDef="let users">
+          {{ users.resetPasswordDate }}
+        </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="createdAt">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>
+          Created At
+        </mat-header-cell>
+        <mat-cell *matCellDef="let users">
+          {{ users.createdAt | date }}
+        </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="updatedAt">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>
+          Updated At
+        </mat-header-cell>
+        <mat-cell *matCellDef="let users">
+          {{ users.updatedAt | date }}
+        </mat-cell>
+      </ng-container>
+
+      <!-- <ng-container matColumnDef="block">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Block/Unblock </mat-header-cell>
+        <mat-cell *matCellDef="let users">
+          <button mat-button [hidden]="users.block" color="accent">Block</button>
+          <button mat-button [hidden]="!users.block" color="basic">Unblock</button>
+        </mat-cell>
+      </ng-container> -->
+
+      <mat-header-row *matHeaderRowDef="displayedUserColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedUserColumns"></mat-row>
     </mat-table>
 
-    <mat-paginator #paginator
-                 [pageSize]="10"
-                 [pageSizeOptions]="[5, 10, 20]"
-                 [showFirstLastButtons]="true">
-  </mat-paginator>
+    <mat-table
+      #table
+      [dataSource]="mentorDataSource"
+      matSort
+      *ngIf="role === 'Mentor'"
+    >
+      <ng-container matColumnDef="id">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>
+          User ID
+        </mat-header-cell>
+        <mat-cell *matCellDef="let mentors"> {{ mentors.id }} </mat-cell>
+      </ng-container>
 
+      <ng-container matColumnDef="firstName">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>
+          First Name
+        </mat-header-cell>
+        <mat-cell *matCellDef="let mentors"> {{ mentors.firstName }} </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="lastName">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>
+          Last Name
+        </mat-header-cell>
+        <mat-cell *matCellDef="let mentors"> {{ mentors.lastName }} </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="userName">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>
+          Email
+        </mat-header-cell>
+        <mat-cell *matCellDef="let mentors"> {{ mentors.userName }} </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="contactNumber">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>
+          Contact Number
+        </mat-header-cell>
+        <mat-cell *matCellDef="let mentors">
+          {{ mentors.contactNumber }}
+        </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="password">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>
+          Password
+        </mat-header-cell>
+        <mat-cell *matCellDef="let mentors"> {{ mentors.password }} </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="regCode">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>
+          Reg Code
+        </mat-header-cell>
+        <mat-cell *matCellDef="let mentors"> {{ mentors.regCode }} </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="role">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>
+          Role
+        </mat-header-cell>
+        <mat-cell *matCellDef="let mentors"> {{ mentors.role }} </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="linkedinUrl">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>
+          Linkedin URL
+        </mat-header-cell>
+        <mat-cell *matCellDef="let mentors">
+          {{ mentors.linkedinUrl }}
+        </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="yearsOfExperience">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>
+          Years Of Experience
+        </mat-header-cell>
+        <mat-cell *matCellDef="let mentors">
+          {{ mentors.yearsOfExperience }}
+        </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="active">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>
+          Active
+        </mat-header-cell>
+        <mat-cell *matCellDef="let mentors"> {{ mentors.active }} </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="timezone">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>
+          Timezone
+        </mat-header-cell>
+        <mat-cell *matCellDef="let mentors">
+          {{ mentors.timezone }}
+        </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="rating">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>
+          Rating
+        </mat-header-cell>
+        <mat-cell *matCellDef="let mentors"> {{ mentors.rating }} </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="profile">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>
+          Profile
+        </mat-header-cell>
+        <mat-cell *matCellDef="let mentors">
+          {{ mentors.profile }}
+        </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="createdAt">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>
+          Created At
+        </mat-header-cell>
+        <mat-cell *matCellDef="let mentors">
+          {{ mentors.createdAt | date }}
+        </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="updatedAt">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>
+          Updated At
+        </mat-header-cell>
+        <mat-cell *matCellDef="let mentors">
+          {{ mentors.updatedAt | date }}
+        </mat-cell>
+      </ng-container>
+
+      <!-- <ng-container matColumnDef="block">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Block/Unblock </mat-header-cell>
+        <mat-cell *matCellDef="let users">
+          <button mat-button [hidden]="users.block" color="accent">Block</button>
+          <button mat-button [hidden]="!users.block" color="basic">Unblock</button>
+        </mat-cell>
+      </ng-container> -->
+
+      <mat-header-row
+        *matHeaderRowDef="displayedMentorColumns"
+      ></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedMentorColumns"></mat-row>
+    </mat-table>
+
+    <mat-paginator
+      #paginator
+      [pageSize]="10"
+      [pageSizeOptions]="[5, 10, 20]"
+      [showFirstLastButtons]="true"
+    >
+    </mat-paginator>
   </div>
-  
-
-  <!-- <div class="table-responsive-sm table-responsive-xs container">
-    <table class="table table-light table-hover table-borderless">
-      <thead class="thead-dark text-center">
-        <tr>
-          <th>Name</th>
-          <th>Type</th>
-          <th>Gender</th>
-          <th>Email</th>
-          <th>Contact</th>
-          <th>Password Hash</th>
-          <th>Block/Unblock</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>Addy Osmani</td>
-          <td>Mentor</td>
-          <td>Male</td>
-          <td>addy@mod.com</td>
-          <td>+919856125532</td>
-          <td>29821b0e714352428d6bc19a9cb595ad</td>
-          <td>
-            <button type="button" class="btn btn-outline-danger">
-              Block
-            </button>
-          </td>
-        </tr>
-        <tr>
-          <td>Wes Bos</td>
-          <td>Mentor</td>
-          <td>Male</td>
-          <td>wes@mod.com</td>
-          <td>+919696522235</td>
-          <td>29821b0e73231264728d6bc19a9cb595ad</td>
-          <td>
-            <button type="button" class="btn btn-outline-danger">
-              Block
-            </button>
-          </td>
-        </tr>
-        <tr>
-          <td>Dan Abramov</td>
-          <td>Mentor</td>
-          <td>Male</td>
-          <td>dan@mod.com</td>
-          <td>+91985666362</td>
-          <td>545vb0714352428d6bc19a9cb595ad</td>
-          <td>
-            <button type="button" class="btn btn-outline-success">
-              Unblock
-            </button>
-          </td>
-        </tr>
-        <tr>
-          <td>Kelly Vaughn</td>
-          <td>Mentor</td>
-          <td>Female</td>
-          <td>kelly@mod.com</td>
-          <td>+918544549632</td>
-          <td>78667gb0034352428d6bc19a9cb595ad</td>
-          <td>
-            <button type="button" class="btn btn-outline-danger">
-              Block
-            </button>
-          </td>
-        </tr>
-        <tr>
-          <td>Sidharth KP</td>
-          <td>User</td>
-          <td>Male</td>
-          <td>addy@mod.com</td>
-          <td>+91982235532</td>
-          <td>29821b0e714352428d6bc19a9cb595ad</td>
-          <td>
-            <button type="button" class="btn btn-outline-danger">
-              Block
-            </button>
-          </td>
-        </tr>
-        <tr>
-          <td>Kyle Simpson</td>
-          <td>User</td>
-          <td>Female</td>
-          <td>kyle@mod.com</td>
-          <td>+919856125532</td>
-          <td>65464464v646d4vs28d6bc19a9cb595ad</td>
-          <td>
-            <button type="button" class="btn btn-outline-success">
-              Unblock
-            </button>
-          </td>
-        </tr>
-      </tbody>
-    </table>
-  </div> -->
 </div>

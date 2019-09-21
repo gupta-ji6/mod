@@ -3,4 +3,5 @@ export class Skill {
   name: string;
   toc: string;
   prerequisites: string;
+  logo: string;
 }

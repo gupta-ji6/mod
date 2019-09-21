@@ -8,6 +8,7 @@
         height="150"
       />
       <h1 class="h3 mb-3 font-weight-normal text-center">Sign Up</h1>
+
       <mat-form-field class="example-full-width">
         <input
           matInput
@@ -18,6 +19,7 @@
         />
         <mat-icon matSuffix class="material-icons-outlined">contacts</mat-icon>
       </mat-form-field>
+
       <mat-form-field class="example-full-width">
         <input
           matInput
@@ -27,6 +29,7 @@
         />
         <mat-icon matSuffix class="material-icons-outlined">contacts</mat-icon>
       </mat-form-field>
+
       <!-- <mat-form-field>
             <mat-select placeholder="Gender">
               <mat-option *ngFor="let gender of genders" [value]="gender.value" >
@@ -35,6 +38,7 @@
             </mat-select>
             <mat-icon matSuffix>person_outline</mat-icon>
           </mat-form-field> -->
+
       <mat-form-field class="example-full-width">
         <input
           matInput
@@ -49,6 +53,7 @@
           getEmailErrorMessage()
         }}</mat-error>
       </mat-form-field>
+
       <mat-form-field class="example-full-width">
         <input
           matInput
@@ -63,6 +68,7 @@
           getPhoneErrorMessage()
         }}</mat-error>
       </mat-form-field>
+
       <mat-form-field class="example-full-width">
         <input
           matInput
@@ -76,6 +82,7 @@
           getUrlErrorMessage()
         }}</mat-error> -->
       </mat-form-field>
+
       <mat-form-field class="example-full-width">
         <input
           matInput
@@ -88,6 +95,7 @@
           >work_outline</mat-icon
         >
       </mat-form-field>
+
       <mat-form-field>
         <input
           matInput
@@ -103,7 +111,8 @@
           >{{ hide ? "visibility" : "visibility_off" }}</mat-icon
         >
       </mat-form-field>
-      <mat-form-field>
+
+      <!-- <mat-form-field>
         <input
           matInput
           placeholder="Confirm Password"
@@ -115,9 +124,9 @@
           (click)="hide = !hide"
           >{{ hide ? "visibility" : "visibility_off" }}</mat-icon
         >
-      </mat-form-field>
+      </mat-form-field> -->
+
       <button mat-raised-button (click)="createUser()">Sign Up</button>
-      <!-- <a mat-raised-button routerLink="/login">Sign Up</a> -->
       <div class="text-muted external">
         Already a member? <a routerLink="/login">Login</a> here.
       </div>

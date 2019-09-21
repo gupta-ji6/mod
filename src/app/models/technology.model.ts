@@ -3,5 +3,6 @@ export class Technology {
   techName: string;
   price: number;
   duration: string;
-  remarks: string;
+  description: string;
+  logo: string;
 }

@@ -16,23 +16,23 @@
           <img mat-card-image src="{{ skill.logo }}" />
           <mat-card-content>
             <div>
-              <small>Domain </small>
+              <small>Prerequisites </small>
               <p>
-                <strong>{{ skill.domain }}</strong>
+                <strong>{{ skill.prerequisites }}</strong>
               </p>
             </div>
             <div>
-              <small>Proficiency</small>
+              <small>Content</small>
               <p>
-                <strong>{{ skill.proficiency }}</strong>
+                <strong>{{ skill.toc }}</strong>
               </p>
             </div>
-            <div>
+            <!-- <div>
               <small>No. Of Trainings</small>
               <p>
                 <strong>{{ skill.numOfTrainings }}</strong>
               </p>
-            </div>
+            </div> -->
           </mat-card-content>
           <mat-card-actions>
             <button mat-button color="accent">
@@ -51,23 +51,19 @@
       <mat-card class="form-card">
         <form>
           <mat-form-field class="example-full-width">
-            <input matInput placeholder="Skill" />
+            <input matInput [(ngModel)]="skill.name" name="name" placeholder="Name of Skill" />
           </mat-form-field>
           <mat-form-field class="example-full-width">
-            <mat-select placeholder="Domain">
-              <mat-option *ngFor="let domain of domains" [value]="domain.value">
-                {{ domain.viewValue }}
-              </mat-option>
-            </mat-select>
+            <input matInput [(ngModel)]="skill.prerequisites" name="prerequisites" placeholder="Prerequisites" />
+            <mat-hint align="start">Seperated with comma</mat-hint>
           </mat-form-field>
           <mat-form-field class="example-full-width">
-            <mat-select placeholder="Proficiency">
-              <mat-option *ngFor="let pro of proficiency" [value]="pro.value">
-                {{ pro.viewValue }}
-              </mat-option>
-            </mat-select>
+            <textarea matInput [(ngModel)]="skill.toc" name="toc" placeholder="Contents" ></textarea>
           </mat-form-field>
-          <button mat-raised-button>Add Skill</button>
+          <mat-form-field class="example-full-width">
+            <input matInput [(ngModel)]="skill.logo" name="logo" placeholder="Logo" />
+          </mat-form-field>
+          <button mat-raised-button (click)="addSkill()">Add Skill</button>
         </form>
       </mat-card>
     </div>
