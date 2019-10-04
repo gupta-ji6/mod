@@ -50,10 +50,10 @@ export class LoginComponent implements OnInit {
 
   login(): void {
     if ((this.input.role == "User")) {
-      this.loginService.getUsers(this.input).subscribe(data => {
+      this.loginService.getUser(this.input).subscribe(data => {
         if (data == null) {
           let message =
-          "Opps!, Your credentials are invalid.";
+          "Opps! Your credentials are invalid.";
           let snackBarRef = this.snackBar.open(message, "Close", {
             duration: 5000
           });
@@ -62,6 +62,7 @@ export class LoginComponent implements OnInit {
           });
         }
         else {
+          sessionStorage.setItem('whoLoggedIn', JSON.stringify(data));
           this.router.navigateByUrl("/user")
         }
       }
@@ -74,7 +75,7 @@ export class LoginComponent implements OnInit {
       // }
       );
     } else if (this.input.role == "Mentor") {
-      this.loginService.getMentors(this.input).subscribe(data => {
+      this.loginService.getMentor(this.input).subscribe(data => {
         if (data == null) {
           let message =
             "Opps!, Your credentials are invalid.";
@@ -86,10 +87,27 @@ export class LoginComponent implements OnInit {
           });
         }
         else {
+          sessionStorage.setItem('whoLoggedIn', JSON.stringify(data));
           this.router.navigateByUrl("/mentor")
         }
       });
     } else if (this.input.role = "Admin") {
+      this.loginService.getUser(this.input).subscribe(data => {
+        if (data == null) {
+          let message =
+          "Opps! Your credentials are invalid.";
+          let snackBarRef = this.snackBar.open(message, "Close", {
+            duration: 5000
+          });
+          snackBarRef.onAction().subscribe(() => {
+            snackBarRef.dismiss();
+          });
+        }
+        else {
+          sessionStorage.setItem('whoLoggedIn', JSON.stringify(data));
+          this.router.navigateByUrl("/admin/users");
+        }
+      });
     }
   }
 }

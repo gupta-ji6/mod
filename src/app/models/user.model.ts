@@ -9,8 +9,10 @@ export class User {
   role: string;
   linkedinUrl: string;
   yearsOfExperience: number;
+  trainingId: number;
   active: boolean;
   confirmedSignUp: boolean;
   resetPassword: boolean;
   resetPasswordDate: string;
+  // delete: string = "Delete";
 }

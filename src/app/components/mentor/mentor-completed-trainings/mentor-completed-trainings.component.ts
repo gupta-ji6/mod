@@ -1,25 +1,57 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatTableDataSource, MatPaginator, MatSort } from "@angular/material";
+import { TrainingService } from '../../../services/training.service';
+import { User } from '../../../models/user.model';
+import { Mentor } from '../../../models/mentor.model';
+import { Training } from '../../../models/training.model';
 
 
 @Component({
   selector: 'app-mentor-completed-trainings',
   templateUrl: './mentor-completed-trainings.component.html',
-  styleUrls: ['./mentor-completed-trainings.component.css']
+  styleUrls: ['./mentor-completed-trainings.component.css'],
+  providers: [TrainingService]
+
 })
 export class MentorCompletedTrainingsComponent implements OnInit {
 
+  whoLoggedIn: User | Mentor;
+  trainings: Training[];
+  dataSource = new MatTableDataSource();
   displayedColumns = [
-    "sno",
     "trainingId",
-    "domain",
-    "price",
     "startDate",
-    "duration",
-    "trainer",
-    "rating"
+    "endDate",
+    "startTime",
+    "endTime",
+    "createdAt",
+    "updatedAt",
+    "status",
+    "progress",
+    "fees",
+    "commisionAmount",
+    "amountRecieved",
+    "razorPaymentId",
+    "rating",
+    "mentor",
+    "user",
+    "skill",
+    "technology",
+    "payment"
   ];
-  dataSource = new MatTableDataSource(MENTOR_COMPLETED_DATA);
+
+  constructor(private trainingService: TrainingService) {}
+
+  ngOnInit() {
+    this.whoLoggedIn = JSON.parse(sessionStorage.getItem("whoLoggedIn"));
+    this.trainingService
+      .getMentorTrainings(this.whoLoggedIn.id)
+      .subscribe(data => {
+        this.trainings = data.filter(training => training.progress === 100);
+        console.log(this.trainings);
+        this.dataSource.data = this.trainings;
+      });
+  }
 
   applyFilter(filterValue: string) {
     filterValue = filterValue.trim(); // Remove whitespace
@@ -33,11 +65,6 @@ export class MentorCompletedTrainingsComponent implements OnInit {
   ngAfterViewInit() {
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
-  }
-  
-  constructor() { }
-
-  ngOnInit() {
   }
 
 }

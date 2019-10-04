@@ -100,13 +100,6 @@ export class AdminEditTechComponent implements OnInit {
 
   techs = [
     {
-        "techName": "Front End",
-        "price": 2499.0,
-        "duration": "60",
-        "description": "The layer above the back end is the front end and it includes all software or hardware that is part of a user interface.",
-        "logo": "https://42f2671d685f51e10fc6-b9fcecea3e50b3b59bdc28dead054ebc.ssl.cf5.rackcdn.com/illustrations/portfolio_website_lidw.svg",
-    },
-    {
         "techName": "Back End",
         "price": 4999.0,
         "duration": "75",

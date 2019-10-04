@@ -1,4 +1,10 @@
+import {User} from './user.model';
+import { Skill } from './skill.model';
+import { Technology } from './technology.model';
+import { Payment } from './payment.model';
 export class Training {
+  createdAt: string;
+  updatedAt: string;
   id: number;
   status: string;
   progress: number;
@@ -10,8 +16,10 @@ export class Training {
   startTime: string;
   endTime: string;
   amountRecieved: number;
-  userId: number;
-  mentorId: number;
-  skillId: number;
-  razorPaymentId: number;
+  razorPaymentId: string;
+  mentor: User;
+  user: User[];
+  skill: Skill[];
+  technology: Technology;
+  payment: Payment[];
 }

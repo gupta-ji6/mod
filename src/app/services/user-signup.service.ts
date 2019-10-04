@@ -18,6 +18,10 @@ export class UserSignupService {
     return this.http.get<User[]>(this.userUrl);
   }
 
+  public putUser(user) {
+    return this.http.put<User>(this.userUrl + "/" + user.id, user)
+  }
+
   public deleteUser(user) {
     return this.http.delete(this.userUrl + "/"+ user.id);
   }

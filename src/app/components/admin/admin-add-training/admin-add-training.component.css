@@ -17,20 +17,12 @@
 .grid-parent {
   width: 80vw;
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(25vw, auto));
+  grid-template-columns: repeat(auto-fill, minmax(186px, auto));
   grid-template-rows: 1fr;
   grid-column-gap: 10px;
   grid-row-gap: 20px;
 }
 
-.mat-card-image {
-  height: 25vh;
-  /* max-width:25vw;
-  max-height:25vh;
-  width: auto;
-  height: auto;
-  margin: 0 auto; */
-}
 .mat-button {
   color: #d81b60;
 }
@@ -40,7 +32,6 @@
   text-transform: uppercase;
   width: 25vw;
 }
-
 
 .form-card {
   margin-bottom: 5vh;
@@ -74,12 +65,6 @@ form {
   color: white;
 }
 
-/* div.form-row {
-  width: 70vw;
-  margin-top: 5vh;
-  flex-wrap: column wrap;
-  display: flex;
-} */
 .card-img-top {
   height: 40vh;
 }

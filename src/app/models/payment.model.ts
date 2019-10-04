@@ -3,7 +3,6 @@ export class Payment {
   txnType: string;
   amount: number;
   remarks: string;
-  mentorId: number;
   mentorName: string;
   trainingId: number;
   skillName: string;

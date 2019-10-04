@@ -9,20 +9,20 @@ import { Technology } from "../../../models/technology.model";
 import { ValueTransformer } from "@angular/compiler/src/util";
 
 @Component({
-  selector: "search-trainings",
-  templateUrl: "./search-trainings.component.html",
-  styleUrls: ["./search-trainings.component.css"],
+  selector: 'app-admin-trainings',
+  templateUrl: './admin-trainings.component.html',
+  styleUrls: ['./admin-trainings.component.css'],
   providers: [TrainingService, TechnologyService]
+
 })
-export class SearchTrainingsComponent implements OnInit {
-  constructor(
-    private trainingService: TrainingService,
+export class AdminTrainingsComponent implements OnInit {
+
+  constructor(private trainingService: TrainingService,
     public technologyService: TechnologyService,
     private router: Router,
-    public snackBar: MatSnackBar
-  ) {}
+    public snackBar: MatSnackBar) { }
 
-  trainings: Training[];
+    trainings: Training[];
   technologies: Technology[];
   domains: string[];
   selectedDomain: string;
@@ -41,7 +41,7 @@ export class SearchTrainingsComponent implements OnInit {
       this.domains.unshift("All");
     })
   }
-  
+
   applyFilter(filterValue: string) {
     filterValue = filterValue.trim(); // Remove whitespace
     filterValue = filterValue.toLowerCase(); // MatTableDataSource defaults to lowercase matches
@@ -71,7 +71,7 @@ export class SearchTrainingsComponent implements OnInit {
     })
   }
 
-  enroll(training: Training) {
+  edit(training: Training) {
     let whoLoggedIn = JSON.parse(sessionStorage.getItem('whoLoggedIn'));
     if(whoLoggedIn === null || whoLoggedIn.role !== "User") {
       let message =
@@ -93,9 +93,4 @@ export class SearchTrainingsComponent implements OnInit {
     }
   }
 
-  hideResults = true;
-
-  showResults() {
-    this.hideResults = false;
-  }
 }

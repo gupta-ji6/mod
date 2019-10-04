@@ -5,12 +5,12 @@ import { SkillService } from '../../../services/skill.service';
 import { Skill } from '../../../models/skill.model';
 
 @Component({
-  selector: 'app-mentor-edit-skills',
-  templateUrl: './mentor-edit-skills.component.html',
-  styleUrls: ['./mentor-edit-skills.component.css'],
+  selector: 'app-admin-edit-skills',
+  templateUrl: './admin-edit-skills.component.html',
+  styleUrls: ['./admin-edit-skills.component.css'],
   providers: [SkillService]
 })
-export class MentorEditSkillsComponent implements OnInit {
+export class AdminEditSkillsComponent implements OnInit {
 
   constructor(private router: Router,
     private skillService: SkillService,

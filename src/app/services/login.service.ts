@@ -13,15 +13,16 @@ export class LoginService {
 
   private userUrl = "http://localhost:8022/users";
   private mentorUrl = "http://localhost:8022/mentors";
-  public getUsers(input) {
-    return this.http.get<User[]>(
-      this.userUrl + "/" + input.role + "/" + input.userName + "/" + input.password
+
+  public getUser(user) {
+    return this.http.get<User>(
+      this.userUrl + "/" + user.role + "/" + user.userName + "/" + user.password
     );
   }
 
-  public getMentors(input) {
-    return this.http.get<Mentor[]>(
-      this.mentorUrl + "/" + input.role + "/" + input.userName + "/" + input.password
+  public getMentor(mentor) {
+    return this.http.get<Mentor>(
+      this.mentorUrl + "/" + mentor.role + "/" + mentor.userName + "/" + mentor.password
     );
   }
 }

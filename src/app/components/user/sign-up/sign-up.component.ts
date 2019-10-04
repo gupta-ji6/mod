@@ -86,7 +86,7 @@ export class SignUpComponent implements OnInit {
       });
     },
     error => {
-      let snackBarRef = this.snackBar.open("Oops! You entered invalid values in some fields.", "Close", {
+      let snackBarRef = this.snackBar.open("Oops! You entered invalid values in some fields." + error.error.message, "Close", {
         duration: 10000
       });
     });

@@ -1,0 +1,70 @@
+<div class="content">
+    <div class="container align-items-center justify-content-center">
+      <div class="row align-items-center justify-content-center">
+        <mat-card class="form-card">
+          <form>
+            <h1>Search</h1>
+            <!-- <mat-form-field class="example-full-width">
+              <input
+                matInput
+                [(ngModel)]="query"
+                name="query"
+                placeholder="Search..."
+                autofocus
+              />
+            </mat-form-field>
+            <button mat-raised-button (click)="applyFilter(query)">Search</button>
+            <div class="mt-3 mb-3">OR</div> -->
+            <mat-form-field class="example-full-width">
+              <label></label>
+              <input matInput type="date" [(ngModel)]="startDate" name="startDate" placeholder="Choose a start date"/>
+            </mat-form-field>
+            <mat-form-field class="example-full-width">
+              <input matInput type="date" [(ngModel)]="endDate" name="endDate" placeholder="Choose an end date"/>
+            </mat-form-field>
+            <mat-form-field class="example-full-width">
+              <mat-select placeholder="Select a Domain" [(value)]="selectedDomain">
+                <mat-option *ngFor="let domain of domains" [value]="domain">
+                  {{ domain }}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+            <button mat-raised-button (click)="filterByDate()">Filter</button>
+          </form>
+        </mat-card>
+  
+        <div class="contain ml-3 mr-3">
+          <div class="grid-parent">
+            <mat-card *ngFor="let training of trainings">
+              <mat-card-header>
+                <mat-card-title
+                  ><strong>{{
+                    training.technology.techName
+                  }}</strong></mat-card-title
+                >
+                <mat-card-subtitle
+                  >by {{ training.mentor.firstName }}
+                  {{ training.mentor.lastName }}</mat-card-subtitle
+                >
+              </mat-card-header>
+              <img mat-card-image src="{{ training.technology.logo }}" />
+              <mat-card-content>
+                <p>{{ training.technology.description }}</p>
+                <p><small class="text-muted">Price</small></p>
+                <p>{{ training.technology.price | currency: "INR":"symbol" }}</p>
+                <p><small class="text-muted">Start Date</small></p>
+                <p>{{ training.startDate | date }} days</p>
+                <p><small class="text-muted">End Date</small></p>
+                <p>{{ training.endDate | date }} days</p>
+              </mat-card-content>
+              <mat-card-actions>
+                <button mat-button (click)="edit(training)">Edit</button>
+                <!-- <button mat-button>Change Fee</button> -->
+              </mat-card-actions>
+            </mat-card>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  

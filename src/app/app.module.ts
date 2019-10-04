@@ -5,7 +5,6 @@ import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { MatTableModule } from "@angular/material/table";
 import {
   MatButtonModule,
-  MatDatepickerModule,
   MatSliderModule,
   MatChipsModule,
   MatProgressBarModule,
@@ -21,7 +20,12 @@ import {
   MatListModule,
   MatSelectModule,
   MatSortModule,
-  MatSnackBarModule 
+  MatSnackBarModule,
+  MatDialogModule,
+  MatDatepickerModule,
+  MatNativeDateModule,
+  MatRadioModule,
+  MatFormFieldModule
 } from "@angular/material";
 import { LayoutModule } from "@angular/cdk/layout";
 import { AppComponent } from "./app.component";
@@ -34,18 +38,27 @@ import { LoginComponent } from "./components/login/login.component";
 import { SignUpComponent } from "./components/user/sign-up/sign-up.component";
 import { UserLandingComponent } from "./components/user/user-landing/user-landing.component";
 import { CompletedTrainingComponent } from "./components/user/completed-training/completed-training.component";
-import { OngoingTrainingComponent } from "./components/user/current-training/ongoing-training.component";
+import { OngoingTrainingComponent } from "./components/user/ongoing-training/ongoing-training.component";
 import { UserPaymentsComponent } from "./components/user/user-payments/user-payments.component";
 import { HomeComponent } from "./components/home/home.component";
 import { SearchTrainingsComponent } from "./components/user/search-trainings/search-trainings.component";
 import { MentorLandingComponent } from "./components/mentor/mentor-landing/mentor-landing.component";
-import { MentorCurrentTrainingsComponent } from "./components/mentor/mentor-current-trainings/mentor-current-trainings.component";
+import { MentorCurrentTrainingsComponent } from "./components/mentor/mentor-ongoing-trainings/mentor-current-trainings.component";
 import { MentorCompletedTrainingsComponent } from "./components/mentor/mentor-completed-trainings/mentor-completed-trainings.component";
-import { MentorEditSkillsComponent } from "./components/mentor/mentor-edit-skills/mentor-edit-skills.component";
+import { AdminEditSkillsComponent } from "./components/admin/admin-edit-skills/admin-edit-skills.component";
 import { MentorSignUpComponent } from "./components/mentor/mentor-sign-up/mentor-sign-up.component";
 import { MentorProfileComponent } from "./components/mentor/mentor-profile/mentor-profile.component";
 import { AdminEditTechComponent } from "./components/admin/admin-edit-tech/admin-edit-tech.component";
 import { AdminUserListComponent } from "./components/admin/admin-user-list/admin-user-list.component";
+import { AdminAddTrainingComponent } from "./components/admin/admin-add-training/admin-add-training.component";
+import { AdminTrainingsComponent } from "./components/admin/admin-trainings/admin-trainings.component";
+import { LoginService } from "./services/login.service";
+import { MentorSignupService } from "./services/mentor-signup.service";
+import { PaymentService } from "./services/payment.service";
+import { SkillService } from "./services/skill.service";
+import { TechnologyService } from "./services/technology.service";
+import { TrainingService } from "./services/training.service";
+import { PageNotFoundComponent } from "./components/page-not-found/page-not-found.component";
 
 @NgModule({
   declarations: [
@@ -65,13 +78,17 @@ import { AdminUserListComponent } from "./components/admin/admin-user-list/admin
     MentorProfileComponent,
     MentorCurrentTrainingsComponent,
     MentorCompletedTrainingsComponent,
-    MentorEditSkillsComponent,
+    AdminEditSkillsComponent,
     AdminEditTechComponent,
-    AdminUserListComponent
+    AdminUserListComponent,
+    AdminAddTrainingComponent,
+    AdminTrainingsComponent,
+    PageNotFoundComponent
   ],
   imports: [
     LayoutModule,
     MatDatepickerModule,
+    MatNativeDateModule,
     MatSliderModule,
     MatChipsModule,
     MatProgressBarModule,
@@ -95,9 +112,12 @@ import { AdminUserListComponent } from "./components/admin/admin-user-list/admin
     MatSidenavModule,
     MatListModule,
     MatSelectModule,
-    MatSnackBarModule 
+    MatSnackBarModule,
+    MatDialogModule,
+    MatRadioModule,
+    MatFormFieldModule
   ],
-  providers: [UserService],
+  providers: [UserService, MatDatepickerModule, LoginService, MentorSignupService, PaymentService, SkillService, TechnologyService, TrainingService, UserService],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

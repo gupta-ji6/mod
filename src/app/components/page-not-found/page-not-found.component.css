@@ -1,0 +1,25 @@
+.content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  min-height: 95vh;
+  width: 100vw;
+  background: #222222;
+  color: white;
+  font-family: "Roboto", sans-serif;
+
+}
+
+img {
+  width: 30vw;
+  height: auto;
+  margin-top: 20px;
+}
+
+.mat-button {
+  width: 15vw;
+  height: 5vh;
+  background-color: #6a11cb;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+}

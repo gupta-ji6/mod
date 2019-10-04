@@ -2,7 +2,7 @@
 @import "~@angular/material/prebuilt-themes/indigo-pink.css";
 
 body,html {
-  height: 100%;
+  height: 100vh;
 }
 .app-loading {
   position: relative;
@@ -10,7 +10,7 @@ body,html {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  height: 100%;
+  height: 100vh;
 }
 
 .app-loading .spinner {

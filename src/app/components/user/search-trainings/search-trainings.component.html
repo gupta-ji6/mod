@@ -4,20 +4,32 @@
       <mat-card class="form-card">
         <form>
           <h1>Search</h1>
-          <mat-form-field class="example-full-width">
-            <input matInput [(ngModel)]="query" name="query" placeholder="Search..." autofocus/>
+          <!-- <mat-form-field class="example-full-width">
+            <input
+              matInput
+              [(ngModel)]="query"
+              name="query"
+              placeholder="Search..."
+              autofocus
+            />
           </mat-form-field>
-          <!-- <mat-form-field class="example-full-width">
-            <input matInput type="date" />
-          </mat-form-field> -->
-          <!-- <mat-form-field class="example-full-width">
-            <mat-select placeholder="Domain">
-              <mat-option *ngFor="let domain of domains" [value]="domain.value">
-                {{ domain.viewValue }}
+          <button mat-raised-button (click)="applyFilter(query)">Search</button>
+          <div class="mt-3 mb-3">OR</div> -->
+          <mat-form-field class="example-full-width">
+            <label></label>
+            <input matInput type="date" [(ngModel)]="startDate" name="startDate" placeholder="Choose a start date"/>
+          </mat-form-field>
+          <mat-form-field class="example-full-width">
+            <input matInput type="date" [(ngModel)]="endDate" name="endDate" placeholder="Choose an end date"/>
+          </mat-form-field>
+          <mat-form-field class="example-full-width">
+            <mat-select placeholder="Select a Domain" [(value)]="selectedDomain">
+              <mat-option *ngFor="let domain of domains" [value]="domain">
+                {{ domain }}
               </mat-option>
             </mat-select>
-          </mat-form-field> -->
-          <button mat-raised-button (click)="applyFilter(query)">Search</button>
+          </mat-form-field>
+          <button mat-raised-button (click)="filterByDate()">Filter</button>
         </form>
       </mat-card>
 
@@ -26,288 +38,32 @@
           <mat-card *ngFor="let training of trainings">
             <mat-card-header>
               <mat-card-title
-                ><strong>{{ training.status }}</strong></mat-card-title>
-              <!-- <mat-card-subtitle>{{
-                training.price | currency: "INR":"symbol"
-              }}</mat-card-subtitle> -->
+                ><strong>{{
+                  training.technology.techName
+                }}</strong></mat-card-title
+              >
+              <mat-card-subtitle
+                >by {{ training.mentor.firstName }}
+                {{ training.mentor.lastName }}</mat-card-subtitle
+              >
             </mat-card-header>
-            <!-- <img mat-card-image src="{{ training.logo }}" /> -->
-            <!-- <mat-card-content>
-              <p>{{ training.description }}</p>
-              <p><small class="text-muted">Duration</small></p>
-              <p>{{ training.duration }} days</p>
+            <img mat-card-image src="{{ training.technology.logo }}" />
+            <mat-card-content>
+              <p>{{ training.technology.description }}</p>
+              <p><small class="text-muted">Price</small></p>
+              <p>{{ training.technology.price | currency: "INR":"symbol" }}</p>
+              <p><small class="text-muted">Start Date</small></p>
+              <p>{{ training.startDate | date }} days</p>
+              <p><small class="text-muted">End Date</small></p>
+              <p>{{ training.endDate | date }} days</p>
             </mat-card-content>
             <mat-card-actions>
-              <button mat-button>Edit</button>
-              <button mat-button>Change Fee</button>
-            </mat-card-actions> -->
+              <button mat-button (click)="enroll(training)">Enroll</button>
+              <!-- <button mat-button>Change Fee</button> -->
+            </mat-card-actions>
           </mat-card>
         </div>
       </div>
-
-
-
-      <!-- <div class="row mb-5 mt-5" *ngIf="!hideResults">
-        <div class="col-sm-4 mb-3">
-          <div class="card mat-elevation-z8">
-            <img
-              src="https://i.pravatar.cc/300"
-              class="card-img-top"
-              alt="..."
-            />
-            <div class="card-body">
-              <h5 class="card-title">Alice Fox</h5>
-              <h6 class="card-subtitle mb-2 text-muted">✔️ Available</h6>
-              <div class="card-text">
-                <small class="text-muted">Skills</small>
-                <div>Java, Angular, JavaScript, React, Vue, Flutter</div>
-                <div class="row">
-                  <div class="col">
-                    <small class="text-muted">No. of Trainings</small>
-                    <div>23</div>
-                  </div>
-                  <div class="col">
-                    <small class="text-muted">Experience</small>
-                    <div>2 Years</div>
-                  </div>
-                </div>
-                <div class="row">
-                  <div class="col">
-                    <small class="text-muted">Work Timings</small>
-                    <div>9 AM - 6 PM</div>
-                  </div>
-                  <div class="col">
-                    <small class="text-muted">Rating</small>
-                    <div>4.6 &#9733;</div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="card-footer">
-              <a mat-button routerLink="/mentor/profile" color="accent"
-                >See Profile</a
-              >
-            </div>
-          </div>
-        </div>
-
-        <div class="col-sm-4 mb-3">
-          <div class="card mat-elevation-z8">
-            <img
-              src="https://i.pravatar.cc/300"
-              class="card-img-top"
-              alt="..."
-            />
-            <div class="card-body">
-              <h5 class="card-title">Alice Fox</h5>
-              <h6 class="card-subtitle mb-2 text-muted">✔️ Available</h6>
-              <div class="card-text">
-                <small class="text-muted">Skills</small>
-                <div>Java, Angular, JavaScript, React, Vue, Flutter</div>
-                <div class="row">
-                  <div class="col">
-                    <small class="text-muted">No. of Trainings</small>
-                    <div>23</div>
-                  </div>
-                  <div class="col">
-                    <small class="text-muted">Experience</small>
-                    <div>2 Years</div>
-                  </div>
-                </div>
-                <div class="row">
-                  <div class="col">
-                    <small class="text-muted">Work Timings</small>
-                    <div>9 AM - 6 PM</div>
-                  </div>
-                  <div class="col">
-                    <small class="text-muted">Rating</small>
-                    <div>4.6 &#9733;</div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="card-footer">
-              <a mat-button routerLink="/mentor/profile" color="accent"
-                >See Profile</a
-              >
-            </div>
-          </div>
-        </div>
-
-        <div class="col-sm-4 mb-3">
-          <div class="card mat-elevation-z8">
-            <img
-              src="https://i.pravatar.cc/300"
-              class="card-img-top"
-              alt="..."
-            />
-            <div class="card-body">
-              <h5 class="card-title">Alice Fox</h5>
-              <h6 class="card-subtitle mb-2 text-muted">✔️ Available</h6>
-              <div class="card-text">
-                <small class="text-muted">Skills</small>
-                <div>Java, Angular, JavaScript, React, Vue, Flutter</div>
-                <div class="row">
-                  <div class="col">
-                    <small class="text-muted">No. of Trainings</small>
-                    <div>23</div>
-                  </div>
-                  <div class="col">
-                    <small class="text-muted">Experience</small>
-                    <div>2 Years</div>
-                  </div>
-                </div>
-                <div class="row">
-                  <div class="col">
-                    <small class="text-muted">Work Timings</small>
-                    <div>9 AM - 6 PM</div>
-                  </div>
-                  <div class="col">
-                    <small class="text-muted">Rating</small>
-                    <div>4.6 &#9733;</div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="card-footer">
-              <a mat-button routerLink="/mentor/profile" color="accent"
-                >See Profile</a
-              >
-            </div>
-          </div>
-        </div>
-      </div> -->
-
-      <!-- <div class="row mb-5" *ngIf="!hideResults">
-        <div class="col-sm-4 mb-3">
-          <div class="card mat-elevation-z8">
-            <img
-              src="https://i.pravatar.cc/300"
-              class="card-img-top"
-              alt="..."
-            />
-            <div class="card-body">
-              <h5 class="card-title">Alice Fox</h5>
-              <h6 class="card-subtitle mb-2 text-muted">✔️ Available</h6>
-              <div class="card-text">
-                <small class="text-muted">Skills</small>
-                <div>Java, Angular, JavaScript, React, Vue, Flutter</div>
-                <div class="row">
-                  <div class="col">
-                    <small class="text-muted">No. of Trainings</small>
-                    <div>23</div>
-                  </div>
-                  <div class="col">
-                    <small class="text-muted">Experience</small>
-                    <div>2 Years</div>
-                  </div>
-                </div>
-                <div class="row">
-                  <div class="col">
-                    <small class="text-muted">Work Timings</small>
-                    <div>9 AM - 6 PM</div>
-                  </div>
-                  <div class="col">
-                    <small class="text-muted">Rating</small>
-                    <div>4.6 &#9733;</div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="card-footer">
-              <a mat-button routerLink="/mentor/profile" color="accent"
-                >See Profile</a
-              >
-            </div>
-          </div>
-        </div>
-
-        <div class="col-sm-4 mb-3">
-          <div class="card mat-elevation-z8">
-            <img
-              src="https://i.pravatar.cc/300"
-              class="card-img-top"
-              alt="..."
-            />
-            <div class="card-body">
-              <h5 class="card-title">Alice Fox</h5>
-              <h6 class="card-subtitle mb-2 text-muted">✔️ Available</h6>
-              <div class="card-text">
-                <small class="text-muted">Skills</small>
-                <div>Java, Angular, JavaScript, React, Vue, Flutter</div>
-                <div class="row">
-                  <div class="col">
-                    <small class="text-muted">No. of Trainings</small>
-                    <div>23</div>
-                  </div>
-                  <div class="col">
-                    <small class="text-muted">Experience</small>
-                    <div>2 Years</div>
-                  </div>
-                </div>
-                <div class="row">
-                  <div class="col">
-                    <small class="text-muted">Work Timings</small>
-                    <div>9 AM - 6 PM</div>
-                  </div>
-                  <div class="col">
-                    <small class="text-muted">Rating</small>
-                    <div>4.6 &#9733;</div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="card-footer">
-              <a mat-button routerLink="/mentor/profile" color="accent"
-                >See Profile</a
-              >
-            </div>
-          </div>
-        </div>
-
-        <div class="col-sm-4 mb-3">
-          <div class="card mat-elevation-z8">
-            <img
-              src="https://i.pravatar.cc/300"
-              class="card-img-top"
-              alt="..."
-            />
-            <div class="card-body">
-              <h5 class="card-title">Alice Fox</h5>
-              <h6 class="card-subtitle mb-2 text-muted">✔️ Available</h6>
-              <div class="card-text">
-                <small class="text-muted">Skills</small>
-                <div>Java, Angular, JavaScript, React, Vue, Flutter</div>
-                <div class="row">
-                  <div class="col">
-                    <small class="text-muted">No. of Trainings</small>
-                    <div>23</div>
-                  </div>
-                  <div class="col">
-                    <small class="text-muted">Experience</small>
-                    <div>2 Years</div>
-                  </div>
-                </div>
-                <div class="row">
-                  <div class="col">
-                    <small class="text-muted">Work Timings</small>
-                    <div>9 AM - 6 PM</div>
-                  </div>
-                  <div class="col">
-                    <small class="text-muted">Rating</small>
-                    <div>4.6 &#9733;</div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="card-footer">
-              <a mat-button routerLink="/mentor/profile" color="accent"
-                >See Profile</a
-              >
-            </div>
-          </div>
-        </div>
-      </div> -->
     </div>
   </div>
 </div>

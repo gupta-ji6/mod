@@ -1,6 +1,6 @@
 <div class="content">
   <div class="mb-5 text-center head">
-    <h1>Completed Trainings - {{whoLoggedIn.firstName}} {{whoLoggedIn.lastName}}</h1>
+    <h1>Ongoing Trainings - {{whoLoggedIn.firstName}} {{whoLoggedIn.lastName}}</h1>
   </div>
 
   <div class="example-container mat-elevation-z8">
@@ -59,23 +59,23 @@
         <mat-cell *matCellDef="let training"> {{ training.endTime }} </mat-cell>
       </ng-container>
 
-      <ng-container matColumnDef="createdAt">
+      <!-- <ng-container matColumnDef="createdAt">
         <mat-header-cell *matHeaderCellDef mat-sort-header>
           Created At</mat-header-cell
         >
         <mat-cell *matCellDef="let training">
           {{ training.createdAt | date }}
         </mat-cell>
-      </ng-container>
+      </ng-container> -->
 
-      <ng-container matColumnDef="updatedAt">
+      <!-- <ng-container matColumnDef="updatedAt">
         <mat-header-cell *matHeaderCellDef mat-sort-header>
           Updated At
         </mat-header-cell>
         <mat-cell *matCellDef="let training">
           {{ training.updatedAt | date }}
         </mat-cell>
-      </ng-container>
+      </ng-container> -->
 
       <ng-container matColumnDef="status">
         <mat-header-cell *matHeaderCellDef mat-sort-header>
@@ -117,52 +117,56 @@
 
       <ng-container matColumnDef="amountRecieved">
         <mat-header-cell *matHeaderCellDef mat-sort-header>
-          amountRecieved
+          Amount Recieved
         </mat-header-cell>
         <mat-cell *matCellDef="let training">
           {{ training.amountRecieved | currency: "INR":"symbol" }}
         </mat-cell>
       </ng-container>
 
-      <ng-container matColumnDef="razorPaymentId">
+      <!-- <ng-container matColumnDef="razorPaymentId">
         <mat-header-cell *matHeaderCellDef mat-sort-header>
           razorPaymentId
         </mat-header-cell>
         <mat-cell *matCellDef="let training">
           {{ training.razorPaymentId }}
         </mat-cell>
-      </ng-container>
+      </ng-container> -->
 
       <ng-container matColumnDef="rating">
         <mat-header-cell *matHeaderCellDef mat-sort-header>
-          rating
+          Rating
         </mat-header-cell>
         <mat-cell *matCellDef="let training">
           {{ training.rating }}
         </mat-cell>
       </ng-container>
 
-      <ng-container matColumnDef="mentor">
+      <!-- <ng-container matColumnDef="mentor">
         <mat-header-cell *matHeaderCellDef mat-sort-header>
           mentor
         </mat-header-cell>
         <mat-cell *matCellDef="let training">
           {{ training.mentor.id }}
         </mat-cell>
-      </ng-container>
+      </ng-container> -->
 
       <ng-container matColumnDef="user">
         <mat-header-cell *matHeaderCellDef mat-sort-header>
-          User
+          No. of Users
         </mat-header-cell>
         <mat-cell *matCellDef="let training">
-          {{ training.user[0].firstName }}
+          {{ training.user.length}}
+          <!-- <div *ngFor="user of training.user">
+            <span>{{user.firstName}},</span>
+          </div> -->
+          <!-- <button mat-raised-button (click)="openDialog(training.user)">Pick one</button> -->
         </mat-cell>
       </ng-container>
 
       <ng-container matColumnDef="skill">
         <mat-header-cell *matHeaderCellDef mat-sort-header>
-          skill
+          Skill
         </mat-header-cell>
         <mat-cell *matCellDef="let training">
           <!-- {{ training.skill[0].name }} -->
@@ -171,21 +175,21 @@
 
       <ng-container matColumnDef="technology">
         <mat-header-cell *matHeaderCellDef mat-sort-header>
-          technology
+          Technology
         </mat-header-cell>
         <mat-cell *matCellDef="let training">
-          <!-- {{ training.technology.name }} -->
+          {{ training.technology.techName }}
         </mat-cell>
       </ng-container>
 
-      <ng-container matColumnDef="payment">
+      <!-- <ng-container matColumnDef="payment">
         <mat-header-cell *matHeaderCellDef mat-sort-header>
           payment
         </mat-header-cell>
         <mat-cell *matCellDef="let training">
-          <!-- {{ training.payment[0].id }} -->
+          {{ training.payment[0].id }}
         </mat-cell>
-      </ng-container>
+      </ng-container> -->
 
       <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
       <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>

@@ -1,5 +1,6 @@
 import { Component, OnInit, ViewChild } from "@angular/core";
 import { MatTableDataSource, MatPaginator, MatSort } from "@angular/material";
+import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 import { UserService } from "../../../user/user.service";
 import { User } from "../../../models/user.model";
 import { MentorSignupService } from "../../../services/mentor-signup.service";
@@ -14,11 +15,13 @@ import { Mentor } from "../../../models/mentor.model";
 export class AdminUserListComponent implements OnInit {
   constructor(
     private userService: UserService,
-    private mentorService: MentorSignupService
+    private mentorService: MentorSignupService,
+    public dialog: MatDialog
   ) {}
 
   users: User[];
   mentors: Mentor[];
+  admins: User[];
   roles = [
     {
       value: "User",
@@ -38,11 +41,13 @@ export class AdminUserListComponent implements OnInit {
   displayedUserColumns: string[];
   displayedMentorColumns: string[];
   userDataSource = new MatTableDataSource();
+  adminDataSource = new MatTableDataSource();
   mentorDataSource = new MatTableDataSource();
 
   ngOnInit() {
     this.userService.getUsers().subscribe(data => {
-      this.users = data;
+      this.admins = data.filter(user=> user.role === "Admin");
+      this.users = data.filter(user=> user.role === "User");
       this.displayedUserColumns = [
         "id",
         "firstName",
@@ -59,10 +64,13 @@ export class AdminUserListComponent implements OnInit {
         "resetPassword",
         "resetPasswordDate",
         "createdAt",
-        "updatedAt"
+        "updatedAt",
+        // "delete"
       ];
       this.userDataSource.data = this.users;
+      this.adminDataSource.data = this.admins;
     });
+
     this.mentorService.getMentors().subscribe(data => {
       this.mentors = data;
       this.displayedMentorColumns = [
@@ -81,7 +89,8 @@ export class AdminUserListComponent implements OnInit {
         "rating",
         "profile",
         "createdAt",
-        "updatedAt"
+        "updatedAt",
+        // "delete"
       ];
       this.mentorDataSource.data = this.mentors;
     });
@@ -90,23 +99,31 @@ export class AdminUserListComponent implements OnInit {
   applyFilter(filterValue: string) {
     filterValue = filterValue.trim(); // Remove whitespace
     filterValue = filterValue.toLowerCase(); // MatTableDataSource defaults to lowercase matches
-    // if (this.role == "Admin") {
-    //   this.search = "Admin";
-    // }
     this.mentorDataSource.filter = filterValue;
     this.userDataSource.filter = filterValue;
+    this.adminDataSource.filter = filterValue;
   }
-
-  @ViewChild(MatSort) sort: MatSort;
-  @ViewChild(MatPaginator) paginator: MatPaginator;
-
+  
   ngAfterViewInit() {
     this.mentorDataSource.paginator = this.paginator;
     this.mentorDataSource.sort = this.sort;
     this.userDataSource.paginator = this.paginator;
     this.userDataSource.sort = this.sort;
+    this.adminDataSource.paginator = this.paginator;
+    this.adminDataSource.sort = this.sort;
   }
+
+  deleteUser(user) {
+    this.userService.deleteUser(user).subscribe(data => {
+      alert("User is deleted!");
+    })
+  }
+
+  @ViewChild(MatSort) sort: MatSort;
+  @ViewChild(MatPaginator) paginator: MatPaginator;
+  
 }
+
 
 // export interface Userss {
 //   sno: number;

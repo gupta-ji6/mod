@@ -4,7 +4,7 @@ export class Mentor {
   userName: string;
   password: string;
   firstName: string;
-  lastname: string;
+  lastName: string;
   contactNumber: number;
   regCode: string;
   role: string;

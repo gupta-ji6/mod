@@ -37,77 +37,77 @@
       #table
       [dataSource]="userDataSource"
       matSort
-      *ngIf="role !== 'Mentor'"
+      *ngIf="role === 'User'"
     >
       <ng-container matColumnDef="id">
         <mat-header-cell *matHeaderCellDef mat-sort-header>
           User ID
         </mat-header-cell>
-        <mat-cell *matCellDef="let users"> {{ users.id }} </mat-cell>
+        <mat-cell *matCellDef="let user"> {{ user.id }} </mat-cell>
       </ng-container>
 
       <ng-container matColumnDef="firstName">
         <mat-header-cell *matHeaderCellDef mat-sort-header>
           First Name
         </mat-header-cell>
-        <mat-cell *matCellDef="let users"> {{ users.firstName }} </mat-cell>
+        <mat-cell *matCellDef="let user"> {{ user.firstName }} </mat-cell>
       </ng-container>
 
       <ng-container matColumnDef="lastName">
         <mat-header-cell *matHeaderCellDef mat-sort-header>
           Last Name
         </mat-header-cell>
-        <mat-cell *matCellDef="let users"> {{ users.lastName }} </mat-cell>
+        <mat-cell *matCellDef="let user"> {{ user.lastName }} </mat-cell>
       </ng-container>
 
       <ng-container matColumnDef="userName">
         <mat-header-cell *matHeaderCellDef mat-sort-header>
           Email
         </mat-header-cell>
-        <mat-cell *matCellDef="let users"> {{ users.userName }} </mat-cell>
+        <mat-cell *matCellDef="let user"> {{ user.userName }} </mat-cell>
       </ng-container>
 
       <ng-container matColumnDef="contactNumber">
         <mat-header-cell *matHeaderCellDef mat-sort-header>
           Contact Number
         </mat-header-cell>
-        <mat-cell *matCellDef="let users"> {{ users.contactNumber }} </mat-cell>
+        <mat-cell *matCellDef="let user"> {{ user.contactNumber }} </mat-cell>
       </ng-container>
 
       <ng-container matColumnDef="password">
         <mat-header-cell *matHeaderCellDef mat-sort-header>
           Password
         </mat-header-cell>
-        <mat-cell *matCellDef="let users"> {{ users.password }} </mat-cell>
+        <mat-cell *matCellDef="let user"> {{ user.password }} </mat-cell>
       </ng-container>
 
       <ng-container matColumnDef="regCode">
         <mat-header-cell *matHeaderCellDef mat-sort-header>
           Reg Code
         </mat-header-cell>
-        <mat-cell *matCellDef="let users"> {{ users.regCode }} </mat-cell>
+        <mat-cell *matCellDef="let user"> {{ user.regCode }} </mat-cell>
       </ng-container>
 
       <ng-container matColumnDef="role">
         <mat-header-cell *matHeaderCellDef mat-sort-header>
           Role
         </mat-header-cell>
-        <mat-cell *matCellDef="let users"> {{ users.role }} </mat-cell>
+        <mat-cell *matCellDef="let user"> {{ user.role }} </mat-cell>
       </ng-container>
 
       <ng-container matColumnDef="linkedinUrl">
         <mat-header-cell *matHeaderCellDef mat-sort-header>
           Linkedin URL
         </mat-header-cell>
-        <mat-cell *matCellDef="let users"> {{ users.linkedinUrl }} </mat-cell>
+        <mat-cell *matCellDef="let user"> {{ user.linkedinUrl }} </mat-cell>
       </ng-container>
 
       <ng-container matColumnDef="yearsOfExperience">
         <mat-header-cell *matHeaderCellDef mat-sort-header>
           Years Of Experience
         </mat-header-cell>
-        <mat-cell *matCellDef="let users">
-          {{ users.yearsOfExperience }}
+        <mat-cell *matCellDef="let user">
+          {{ user.yearsOfExperience }}
         </mat-cell>
       </ng-container>
 
@@ -115,15 +115,15 @@
         <mat-header-cell *matHeaderCellDef mat-sort-header>
           Active
         </mat-header-cell>
-        <mat-cell *matCellDef="let users"> {{ users.active }} </mat-cell>
+        <mat-cell *matCellDef="let user"> {{ user.active }} </mat-cell>
       </ng-container>
 
       <ng-container matColumnDef="confirmedSignUp">
         <mat-header-cell *matHeaderCellDef mat-sort-header>
           Confirmed Sign Up
         </mat-header-cell>
-        <mat-cell *matCellDef="let users">
-          {{ users.confirmedSignUp }}
+        <mat-cell *matCellDef="let user">
+          {{ user.confirmedSignUp }}
         </mat-cell>
       </ng-container>
 
@@ -131,15 +131,15 @@
         <mat-header-cell *matHeaderCellDef mat-sort-header>
           Reset Password
         </mat-header-cell>
-        <mat-cell *matCellDef="let users"> {{ users.resetPassword }} </mat-cell>
+        <mat-cell *matCellDef="let user"> {{ user.resetPassword }} </mat-cell>
       </ng-container>
 
       <ng-container matColumnDef="resetPasswordDate">
         <mat-header-cell *matHeaderCellDef mat-sort-header>
           Reset Password Date
         </mat-header-cell>
-        <mat-cell *matCellDef="let users">
-          {{ users.resetPasswordDate }}
+        <mat-cell *matCellDef="let user">
+          {{ user.resetPasswordDate }}
         </mat-cell>
       </ng-container>
 
@@ -147,8 +147,8 @@
         <mat-header-cell *matHeaderCellDef mat-sort-header>
           Created At
         </mat-header-cell>
-        <mat-cell *matCellDef="let users">
-          {{ users.createdAt | date }}
+        <mat-cell *matCellDef="let user">
+          {{ user.createdAt | date }}
         </mat-cell>
       </ng-container>
 
@@ -156,10 +156,19 @@
         <mat-header-cell *matHeaderCellDef mat-sort-header>
           Updated At
         </mat-header-cell>
-        <mat-cell *matCellDef="let users">
-          {{ users.updatedAt | date }}
+        <mat-cell *matCellDef="let user">
+          {{ user.updatedAt | date }}
         </mat-cell>
       </ng-container>
+
+      <!-- <ng-container matColumnDef="delete">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>
+          Delete User
+        </mat-header-cell>
+        <mat-cell *matCellDef="let user">
+          <button mat-button color="accent" (click)="deleteUser(user)">Delete</button>
+          </mat-cell>
+      </ng-container> -->
 
       <!-- <ng-container matColumnDef="block">
         <mat-header-cell *matHeaderCellDef mat-sort-header> Block/Unblock </mat-header-cell>
@@ -172,6 +181,146 @@
       <mat-header-row *matHeaderRowDef="displayedUserColumns"></mat-header-row>
       <mat-row *matRowDef="let row; columns: displayedUserColumns"></mat-row>
     </mat-table>
+
+    <mat-table
+    #table
+    [dataSource]="adminDataSource"
+    matSort
+    *ngIf="role === 'Admin'"
+  >
+    <ng-container matColumnDef="id">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>
+        User ID
+      </mat-header-cell>
+      <mat-cell *matCellDef="let users"> {{ users.id }} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="firstName">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>
+        First Name
+      </mat-header-cell>
+      <mat-cell *matCellDef="let users"> {{ users.firstName }} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="lastName">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>
+        Last Name
+      </mat-header-cell>
+      <mat-cell *matCellDef="let users"> {{ users.lastName }} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="userName">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>
+        Email
+      </mat-header-cell>
+      <mat-cell *matCellDef="let users"> {{ users.userName }} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="contactNumber">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>
+        Contact Number
+      </mat-header-cell>
+      <mat-cell *matCellDef="let users"> {{ users.contactNumber }} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="password">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>
+        Password
+      </mat-header-cell>
+      <mat-cell *matCellDef="let users"> {{ users.password }} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="regCode">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>
+        Reg Code
+      </mat-header-cell>
+      <mat-cell *matCellDef="let users"> {{ users.regCode }} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="role">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>
+        Role
+      </mat-header-cell>
+      <mat-cell *matCellDef="let users"> {{ users.role }} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="linkedinUrl">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>
+        Linkedin URL
+      </mat-header-cell>
+      <mat-cell *matCellDef="let users"> {{ users.linkedinUrl }} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="yearsOfExperience">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>
+        Years Of Experience
+      </mat-header-cell>
+      <mat-cell *matCellDef="let users">
+        {{ users.yearsOfExperience }}
+      </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="active">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>
+        Active
+      </mat-header-cell>
+      <mat-cell *matCellDef="let users"> {{ users.active }} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="confirmedSignUp">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>
+        Confirmed Sign Up
+      </mat-header-cell>
+      <mat-cell *matCellDef="let users">
+        {{ users.confirmedSignUp }}
+      </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="resetPassword">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>
+        Reset Password
+      </mat-header-cell>
+      <mat-cell *matCellDef="let users"> {{ users.resetPassword }} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="resetPasswordDate">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>
+        Reset Password Date
+      </mat-header-cell>
+      <mat-cell *matCellDef="let users">
+        {{ users.resetPasswordDate }}
+      </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="createdAt">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>
+        Created At
+      </mat-header-cell>
+      <mat-cell *matCellDef="let users">
+        {{ users.createdAt | date }}
+      </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="updatedAt">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>
+        Updated At
+      </mat-header-cell>
+      <mat-cell *matCellDef="let users">
+        {{ users.updatedAt | date }}
+      </mat-cell>
+    </ng-container>
+
+    <!-- <ng-container matColumnDef="block">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Block/Unblock </mat-header-cell>
+      <mat-cell *matCellDef="let users">
+        <button mat-button [hidden]="users.block" color="accent">Block</button>
+        <button mat-button [hidden]="!users.block" color="basic">Unblock</button>
+      </mat-cell>
+    </ng-container> -->
+
+    <mat-header-row *matHeaderRowDef="displayedUserColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedUserColumns"></mat-row>
+  </mat-table>
 
     <mat-table
       #table
