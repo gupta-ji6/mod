@@ -77,10 +77,10 @@ export class SearchTrainingsComponent implements OnInit {
             duration: 2500
           });
           snackBarRef.onAction().subscribe(() => {
-            this.router.navigateByUrl("/user/login");
+            this.router.navigateByUrl("login");
           });
           snackBarRef.afterDismissed().subscribe(() => {
-            this.router.navigateByUrl("/user/login");
+            this.router.navigateByUrl("login");
           })
     }
     else {
