@@ -1,20 +1,32 @@
 <div class="content">
   <div class="mb-5 text-center head">
-    <h1>Completed Trainings - {{ whoLoggedIn.firstName }} {{ whoLoggedIn.lastName }}</h1>
+    <h1>
+      Completed Trainings - {{ whoLoggedIn.firstName }}
+      {{ whoLoggedIn.lastName }}
+    </h1>
   </div>
 
   <div *ngIf="zeroCompletedTrainings">
     <mat-card>
-      <img mat-card-image width="200" height="200" class="mt-3" src="https://42f2671d685f51e10fc6-b9fcecea3e50b3b59bdc28dead054ebc.ssl.cf5.rackcdn.com/illustrations/a_moment_to_relax_bbpa.svg">
+      <img
+        mat-card-image
+        width="200"
+        height="200"
+        class="mt-3"
+        src="https://42f2671d685f51e10fc6-b9fcecea3e50b3b59bdc28dead054ebc.ssl.cf5.rackcdn.com/illustrations/a_moment_to_relax_bbpa.svg"
+      />
       <mat-card-content>
-          <h4 class="text-center">
-           You haven't completed any training yet.
-          </h4>
-        </mat-card-content>
+        <h4 class="text-center">
+          You haven't completed any training yet.
+        </h4>
+      </mat-card-content>
     </mat-card>
   </div>
 
-  <div class="example-container mat-elevation-z8" *ngIf="!zeroCompletedTrainings">
+  <div
+    class="example-container mat-elevation-z8"
+    *ngIf="!zeroCompletedTrainings"
+  >
     <div class="example-header">
       <mat-form-field>
         <input
@@ -26,7 +38,7 @@
     </div>
 
     <mat-table #table [dataSource]="dataSource" matSort>
-<ng-container matColumnDef="trainingId">
+      <ng-container matColumnDef="trainingId">
         <mat-header-cell *matHeaderCellDef mat-sort-header>
           Training ID
         </mat-header-cell>
@@ -175,7 +187,9 @@
           Skill
         </mat-header-cell>
         <mat-cell *matCellDef="let training">
-          <!-- {{ training.skill[0].name }} -->
+          <ul *ngFor="let skill of training.skill">
+            <li>{{ skill.name }}</li>
+          </ul>
         </mat-cell>
       </ng-container>
 

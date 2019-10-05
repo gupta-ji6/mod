@@ -6,7 +6,6 @@ import { TrainingService } from "../../../services/training.service";
 import { Training } from "../../../models/training.model";
 import { TechnologyService } from "../../../services/technology.service";
 import { Technology } from "../../../models/technology.model";
-import { ValueTransformer } from "@angular/compiler/src/util";
 
 @Component({
   selector: "search-trainings",
@@ -29,6 +28,7 @@ export class SearchTrainingsComponent implements OnInit {
   query: string;
   startDate;
   endDate;
+  noTraining: boolean = false;
 
   ngOnInit() {
     this.trainingService.getTrainings().subscribe(data => {
@@ -37,36 +37,33 @@ export class SearchTrainingsComponent implements OnInit {
     this.technologyService.getTechnologies().subscribe(data => {
       this.technologies = data;
       this.domains = this.technologies.map(tech => tech.techName);
-      // this.domains.viewValue = this.technologies.map(tech => tech.techName);
       this.domains.unshift("All");
     })
   }
   
-  applyFilter(filterValue: string) {
-    filterValue = filterValue.trim(); // Remove whitespace
-    filterValue = filterValue.toLowerCase(); // MatTableDataSource defaults to lowercase matches
-    this.trainings = this.trainings.filter(training => training.technology.techName.includes(filterValue))
-    console.log(this.trainings);
-    console.log(filterValue);
-  }
+  // applyFilter(filterValue: string) {
+  //   filterValue = filterValue.trim(); // Remove whitespace
+  //   filterValue = filterValue.toLowerCase(); // MatTableDataSource defaults to lowercase matches
+  //   this.trainings = this.trainings.filter(training => training.technology.techName.includes(filterValue))
+  // }
 
   filterByDate() {
     let startDate = this.startDate;
-    // console.log(startDate);
     startDate = startDate.replace(/\//g, "-");
     let endDate = this.endDate;
-    // console.log(endDate);
     endDate = endDate.replace(/\//g, "-");
-    // console.log(startDate, endDate);
 
     this.trainingService.filterByDate(startDate, endDate).subscribe(data => {
-      if(this.selectedDomain === "All") {
-        this.trainings = data;
-        // console.log(this.trainings);
+      if(data.length <=0) {
+        this.noTraining = true;
       }
       else {
-        // console.log(this.selectedDomain);
-        this.trainings = data.filter(training => training.technology.techName === this.selectedDomain);
+        if(this.selectedDomain === "All") {
+          this.trainings = data;
+        }
+        else {
+          this.trainings = data.filter(training => training.technology.techName === this.selectedDomain);
+        }
       }
     })
   }
@@ -89,13 +86,7 @@ export class SearchTrainingsComponent implements OnInit {
     else {
       whoLoggedIn.trainingId = training.id;
       sessionStorage.setItem('whoLoggedIn', JSON.stringify(whoLoggedIn));
-      this.router.navigateByUrl("/user/payments");
+      this.router.navigateByUrl("/user/pay");
     }
-  }
-
-  hideResults = true;
-
-  showResults() {
-    this.hideResults = false;
   }
 }

@@ -54,15 +54,18 @@ export class UserPaymentsComponent implements OnInit {
     this.payment.skillName = this.training.skill.map(skill => skill.name).toString();
     this.payment.trainingId = this.training.id;
     this.paymentService.addPayment(this.payment).subscribe(data => {
-      console.log("paid!");
-      console.log(this.payment);
-      
     },
     error => {
       console.log("error bc");
       console.log(this.payment);
-      
-      
+      let message =
+      "Opps! Something went wrong.";
+      let snackBarRef = this.snackBar.open(message, "Close", {
+        duration: 5000
+      });
+      snackBarRef.onAction().subscribe(() => {
+        window.location.reload();
+      });
     });
     this.userSignupService.putUser(this.whoLoggedIn).subscribe(data => {
       let message =

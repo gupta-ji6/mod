@@ -22,6 +22,7 @@ import { AdminUserListComponent } from "./components/admin/admin-user-list/admin
 import { AdminAddTrainingComponent } from "./components/admin/admin-add-training/admin-add-training.component";
 import { AdminTrainingsComponent } from "./components/admin/admin-trainings/admin-trainings.component";
 import { PageNotFoundComponent } from "./components/page-not-found/page-not-found.component";
+import { LogoutComponent } from "./components/logout/logout.component";
 
 const routes: Routes = [
   { path: "", redirectTo: "/home", pathMatch: "full", },
@@ -33,7 +34,7 @@ const routes: Routes = [
   { path: "search", component: SearchTrainingsComponent },
   { path: "user/completed-trainings", component: CompletedTrainingComponent },
   { path: "user/ongoing-trainings", component: OngoingTrainingComponent },
-  { path: "user/payments", component: UserPaymentsComponent },
+  { path: "user/pay", component: UserPaymentsComponent },
   { path: "mentor", component: MentorLandingComponent },
   { path: "mentor/profile", component: MentorProfileComponent },
   {
@@ -51,6 +52,7 @@ const routes: Routes = [
   { path: "admin/training/view", component: AdminTrainingsComponent },
   { path: "add", component: AddUserComponent },
   { path: "users", component: UserComponent },
+  { path: "logout", component: LogoutComponent },
   { path: "404", component: PageNotFoundComponent },
   { path: "**", redirectTo: "/404" }
 ];

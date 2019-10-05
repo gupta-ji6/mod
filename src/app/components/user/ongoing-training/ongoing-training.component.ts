@@ -19,7 +19,6 @@ export class OngoingTrainingComponent implements OnInit {
   trainings: Training[];
   dataSource = new MatTableDataSource();
   displayedColumns = [
-    "trainingId",
     "startDate",
     "endDate",
     "startTime",

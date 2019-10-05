@@ -18,14 +18,14 @@
 
     <mat-table #table [dataSource]="dataSource" matSort>
       
-      <ng-container matColumnDef="trainingId">
+      <!-- <ng-container matColumnDef="trainingId">
         <mat-header-cell *matHeaderCellDef mat-sort-header>
           Training ID
         </mat-header-cell>
         <mat-cell *matCellDef="let training">
           {{ training.id }}
         </mat-cell>
-      </ng-container>
+      </ng-container> -->
 
       <ng-container matColumnDef="startDate">
         <mat-header-cell *matHeaderCellDef mat-sort-header>
@@ -167,7 +167,9 @@
           Skill
         </mat-header-cell>
         <mat-cell *matCellDef="let training">
-          <!-- {{ training.skill[0].name }} -->
+          <ul *ngFor="let skill of training.skill">
+            <li>{{skill.name}}</li>
+          </ul>
         </mat-cell>
       </ng-container>
 
@@ -176,7 +178,7 @@
           Technology
         </mat-header-cell>
         <mat-cell *matCellDef="let training">
-          <!-- {{ training.technology.name }} -->
+          {{ training.technology.techName }}
         </mat-cell>
       </ng-container>
 

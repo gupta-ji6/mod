@@ -59,6 +59,7 @@ import { SkillService } from "./services/skill.service";
 import { TechnologyService } from "./services/technology.service";
 import { TrainingService } from "./services/training.service";
 import { PageNotFoundComponent } from "./components/page-not-found/page-not-found.component";
+import { LogoutComponent } from "./components/logout/logout.component";
 
 @NgModule({
   declarations: [
@@ -83,7 +84,8 @@ import { PageNotFoundComponent } from "./components/page-not-found/page-not-foun
     AdminUserListComponent,
     AdminAddTrainingComponent,
     AdminTrainingsComponent,
-    PageNotFoundComponent
+    PageNotFoundComponent,
+    LogoutComponent
   ],
   imports: [
     LayoutModule,

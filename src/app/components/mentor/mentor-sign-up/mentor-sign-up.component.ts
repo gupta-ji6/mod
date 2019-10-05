@@ -76,7 +76,7 @@ export class MentorSignUpComponent implements OnInit {
       let message =
         "Hey, " + data.firstName + ". You can now access our services!";
       let snackBarRef = this.snackBar.open(message, "Login", {
-        duration: 5000
+        duration: 2500
       });
       snackBarRef.onAction().subscribe(() => {
         this.router.navigateByUrl("/login");

@@ -89,7 +89,7 @@ export class AdminTrainingsComponent implements OnInit {
     else {
       whoLoggedIn.trainingId = training.id;
       sessionStorage.setItem('whoLoggedIn', JSON.stringify(whoLoggedIn));
-      this.router.navigateByUrl("/user/payments");
+      this.router.navigateByUrl("/user/pay");
     }
   }
 

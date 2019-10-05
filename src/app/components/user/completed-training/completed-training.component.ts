@@ -18,7 +18,6 @@ export class CompletedTrainingComponent implements OnInit {
   zeroCompletedTrainings: boolean = true;
   dataSource = new MatTableDataSource();
   displayedColumns = [
-    "trainingId",
     "startDate",
     "endDate",
     "startTime",

@@ -25,7 +25,7 @@ export class AppComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.whoLoggedIn = JSON.parse(sessionStorage.getItem('whoLoggedIn'));
-    if(this.whoLoggedIn==null)
+    if(this.whoLoggedIn!==null)
       this.isLoggedIn = true;
     if(this.whoLoggedIn.role==="User")
       this.isUserLoggedIn = true;
@@ -38,7 +38,7 @@ export class AppComponent implements OnInit, OnDestroy {
   constructor(changeDetectorRef: ChangeDetectorRef, media: MediaMatcher, public router: Router) {
     this.mobileQuery = media.matchMedia('(max-width: 600px)');
     this._mobileQueryListener = () => changeDetectorRef.detectChanges();
-    this.mobileQuery.addListener(this._mobileQueryListener);
+    this.mobileQuery.addListener(this._mobileQueryListener);    
   }
 
   ngOnDestroy(): void {

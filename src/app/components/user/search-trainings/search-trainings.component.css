@@ -12,6 +12,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-direction: column;
 }
 
 .grid-parent {
@@ -21,6 +22,9 @@
   grid-template-rows: 1fr;
   grid-column-gap: 10px;
   grid-row-gap: 20px;
+  -webkit-animation: scale-in-center 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94)
+    both;
+  animation: scale-in-center 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
 }
 
 .mat-card-image {
@@ -41,10 +45,12 @@
   width: 25vw;
 }
 
-
 .form-card {
   margin-bottom: 5vh;
   margin-top: 5vh;
+  -webkit-animation: scale-in-center 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94)
+    both;
+  animation: scale-in-center 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
 }
 
 form {

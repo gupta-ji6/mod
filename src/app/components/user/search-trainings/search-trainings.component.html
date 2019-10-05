@@ -17,13 +17,28 @@
           <div class="mt-3 mb-3">OR</div> -->
           <mat-form-field class="example-full-width">
             <label></label>
-            <input matInput type="date" [(ngModel)]="startDate" name="startDate" placeholder="Choose a start date"/>
+            <input
+              matInput
+              type="date"
+              [(ngModel)]="startDate"
+              name="startDate"
+              placeholder="Choose a start date"
+            />
           </mat-form-field>
           <mat-form-field class="example-full-width">
-            <input matInput type="date" [(ngModel)]="endDate" name="endDate" placeholder="Choose an end date"/>
+            <input
+              matInput
+              type="date"
+              [(ngModel)]="endDate"
+              name="endDate"
+              placeholder="Choose an end date"
+            />
           </mat-form-field>
           <mat-form-field class="example-full-width">
-            <mat-select placeholder="Select a Domain" [(value)]="selectedDomain">
+            <mat-select
+              placeholder="Select a Domain"
+              [(value)]="selectedDomain"
+            >
               <mat-option *ngFor="let domain of domains" [value]="domain">
                 {{ domain }}
               </mat-option>
@@ -33,7 +48,7 @@
         </form>
       </mat-card>
 
-      <div class="contain ml-3 mr-3">
+      <div class="contain ml-3 mr-3" *ngIf="!noTraining">
         <div class="grid-parent">
           <mat-card *ngFor="let training of trainings">
             <mat-card-header>
@@ -65,5 +80,13 @@
         </div>
       </div>
     </div>
+
+    <div *ngIf="noTraining">
+        <mat-card>
+              <h3 class="text-center">Uh-Oh!</h3>
+              <img mat-card-image src="https://42f2671d685f51e10fc6-b9fcecea3e50b3b59bdc28dead054ebc.ssl.cf5.rackcdn.com/illustrations/blank_canvas_3rbb.svg" />
+              <mat-card-content class="text-center">Looks like there are no trainings available for this time interval.</mat-card-content>
+        </mat-card>
+      </div>
   </div>
 </div>
