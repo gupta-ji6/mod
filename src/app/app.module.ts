@@ -38,7 +38,7 @@ import { LoginComponent } from "./components/login/login.component";
 import { SignUpComponent } from "./components/user/sign-up/sign-up.component";
 import { UserLandingComponent } from "./components/user/user-landing/user-landing.component";
 import { CompletedTrainingComponent } from "./components/user/completed-training/completed-training.component";
-import { OngoingTrainingComponent } from "./components/user/ongoing-training/ongoing-training.component";
+import { OngoingTrainingComponent, UpdateProgressDialog } from "./components/user/ongoing-training/ongoing-training.component";
 import { UserPaymentsComponent } from "./components/user/user-payments/user-payments.component";
 import { HomeComponent } from "./components/home/home.component";
 import { SearchTrainingsComponent } from "./components/user/search-trainings/search-trainings.component";
@@ -85,7 +85,8 @@ import { LogoutComponent } from "./components/logout/logout.component";
     AdminAddTrainingComponent,
     AdminTrainingsComponent,
     PageNotFoundComponent,
-    LogoutComponent
+    LogoutComponent,
+    UpdateProgressDialog
   ],
   imports: [
     LayoutModule,
@@ -120,6 +121,7 @@ import { LogoutComponent } from "./components/logout/logout.component";
     MatFormFieldModule
   ],
   providers: [UserService, MatDatepickerModule, LoginService, MentorSignupService, PaymentService, SkillService, TechnologyService, TrainingService, UserService],
+  entryComponents: [UpdateProgressDialog, OngoingTrainingComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

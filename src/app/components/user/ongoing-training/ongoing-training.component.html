@@ -146,7 +146,7 @@
 
       <ng-container matColumnDef="mentor">
         <mat-header-cell *matHeaderCellDef mat-sort-header>
-          mentor
+          Mentor
         </mat-header-cell>
         <mat-cell *matCellDef="let training">
           {{ training.mentor.firstName }} {{ training.mentor.lastName }}
@@ -182,14 +182,14 @@
         </mat-cell>
       </ng-container>
 
-      <!-- <ng-container matColumnDef="payment">
+      <ng-container matColumnDef="update">
         <mat-header-cell *matHeaderCellDef mat-sort-header>
-          Payment
+          Update Progress
         </mat-header-cell>
         <mat-cell *matCellDef="let training">
-          {{ training.payment[0].id }}
+          <button mat-button (click)="updateProgress(training)" color="accent">Update</button>
         </mat-cell>
-      </ng-container> -->
+      </ng-container>
 
       <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
       <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>

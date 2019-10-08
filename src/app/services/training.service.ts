@@ -30,6 +30,10 @@ export class TrainingService {
     );
   }
 
+  public putTraining(training: Training) {
+    return this.http.put<Training>(this.trainingUrl + "/" + training.id, training);
+  }
+
   public getMentorTrainings(mentorId) {
     return this.http.get<Training[]>(
       this.trainingUrl + "/findTrainingByMentorId/" + mentorId

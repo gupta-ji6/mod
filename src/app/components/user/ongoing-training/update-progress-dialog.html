@@ -1,0 +1,11 @@
+<h1 mat-dialog-title>Training by {{data.mentor.firstName}} {{data.mentor.lastName}}</h1>
+<div mat-dialog-content>
+  <p>What's your current progress?</p>
+  <mat-form-field>
+    <input matInput type="number" [(ngModel)]="data.progress">
+  </mat-form-field>
+</div>
+<div mat-dialog-actions>
+  <!-- <button mat-button (click)="onNoClick()">Cancel</button> -->
+  <button mat-button [mat-dialog-close]="data.progress" color="accent" cdkFocusInitial>Update</button>
+</div>
