@@ -56,6 +56,12 @@
         >
         <a
           mat-list-item
+          routerLink="/mentor/profile"
+          *ngIf="isMentorLoggedIn"
+          >Profile</a
+        >
+        <a
+          mat-list-item
           routerLink="/admin/edit-skills"
           *ngIf="isAdminLoggedIn"
           >Edit Skills</a

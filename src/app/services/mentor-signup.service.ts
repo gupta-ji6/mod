@@ -17,6 +17,10 @@ export class MentorSignupService {
     return this.http.get<Mentor[]>(this.mentorUrl);
   }
 
+  public getMentorById(mentorId) {
+    return this.http.get<Mentor>(this.mentorUrl + "/" + mentorId)
+  }
+
   public deleteMentor(mentor) {
     return this.http.delete(this.mentorUrl + "/"+ mentor.id);
   }
